@@ -1,0 +1,45 @@
+.TodoItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.TodoItem:last-child {
+    border-bottom: none;
+}
+
+.isCompleted .Text {
+    opacity: .5;
+    text-decoration: line-through;
+}
+
+.RemoveBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #fff;
+    font-size: 1rem;
+    background: red;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.RemoveBtn:hover {
+    background: rgb(230, 2, 2);
+}
+
+.ToggleBtn {
+    margin: 0 .5rem;
+    cursor: pointer;
+}
+
+.Ctas {
+    display: flex;
+    align-items: center;
+}

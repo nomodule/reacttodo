@@ -1,0 +1,40 @@
+.TodoController {
+    max-width: 500px;
+    margin: 5rem auto 0;
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, .5);
+}
+
+.AllBtn, .ActiveBtn, .CompletedBtn {
+    padding: .2em .5rem;
+    background: #fff;
+    color: #ccc;
+    border: 1px solid currentColor;
+    border-radius: .2rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.AllBtn:hover,
+.AllBtn:focus,
+.ActiveBtn:hover,
+.ActiveBtn:focus,
+.CompletedBtn:hover,
+.CompletedBtn:focus {
+    color: rgb(163, 163, 163);
+}
+
+.Active {
+    background: #03a9f4;
+    color: #fff;
+    border: 1px solid #03a9f4;
+}
+
+.Active:hover,
+.Active:focus {
+    color: #fff;
+    background: #2196f3;
+}
