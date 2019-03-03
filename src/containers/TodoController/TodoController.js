@@ -40,8 +40,8 @@ class TodoController extends Component {
 
     }
 
-    editTodoHandler = () => {
-        console.log("Double clicked!");
+    editTodoHandler = (id) => {
+        console.log(id);
     }
 
     removeTodoHandler = (id) => {

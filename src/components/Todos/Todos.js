@@ -10,7 +10,7 @@ const todo = (props) => {
             key={todo.id} 
             isCompleted={todo.isDone} 
             removeTodoFn={props.removeTodoFn.bind(null, todo.id)} 
-            editTodoFn={this.editTodoHandler}
+            editTodoFn={props.editTodoFn.bind(null, todo.id)}
             toggleComplete={props.toggleComplete.bind(null, todo.id)} />
     });
 

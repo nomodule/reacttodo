@@ -14,7 +14,7 @@ const todoItem = (props) => {
 
     return (
         <div className={todoItemClass.join(' ')}>
-            <div className={classes.Text} onDoubleClick={}>{props.text}</div>
+            <div className={classes.Text} onDoubleClick={props.editTodoFn}>{props.text}</div>
             <div className={classes.Ctas}>
                 <Checkbox 
                     className={classes.ToggleBtn} 
