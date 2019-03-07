@@ -9,6 +9,7 @@ class TodoController extends Component {
 
     state = {
         nowShowing: 'all',
+        editing: null,
         todos: [
             { id: 'dsa221', text: 'Make website logo smaller', isDone: false },
             { id: '45sdrL', text: 'Add cookie stripe', isDone: true },
@@ -41,7 +42,11 @@ class TodoController extends Component {
     }
 
     editTodoHandler = (id) => {
-        console.log(id);
+        this.setState({editing: id});
+    }
+
+    removeEditStateHandler = () => {
+        this.setState({editing: null});
     }
 
     removeTodoHandler = (id) => {
@@ -95,6 +100,8 @@ class TodoController extends Component {
         return (
             <div className={classes.TodoController}>
                 <InputText 
+                    className={classes.TodoControllerInputText} 
+                    autofocus={true} 
                     placeholder="What needs to be done ?" 
                     keyup={this.inputKeyupHandler} />
                 <Button 
@@ -109,7 +116,9 @@ class TodoController extends Component {
                 <Todos 
                     todos={showTheseTodos} 
                     removeTodoFn={this.removeTodoHandler} 
-                    editTodoFn={this.editTodoHandler}
+                    editTodoFn={this.editTodoHandler} 
+                    removeEditState={this.removeEditStateHandler} 
+                    editing={this.state.editing} 
                     toggleComplete={this.toggleCompletehandler}/>
             </div>
         );

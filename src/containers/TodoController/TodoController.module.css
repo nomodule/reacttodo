@@ -6,6 +6,21 @@
     box-shadow: 1px 2px 3px rgba(0, 0, 0, .5);
 }
 
+.TodoControllerInputText {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 1rem 0;
+    font-family: inherit;
+    font-size: 1.6rem;
+    outline: none;
+    border-bottom: 1px solid #eee;
+}
+
+.TodoControllerInputText:focus {
+    border-bottom: 1px solid #ccc;
+}
+
 .AllBtn, .ActiveBtn, .CompletedBtn {
     padding: .2em .5rem;
     background: #fff;

@@ -1,3 +1,10 @@
+/*
+ * I am not using this class 
+ * because we gonna pass classname 
+ * from parent component
+ *
+ */
+ 
 .InputText {
     display: block;
     width: 100%;

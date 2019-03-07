@@ -4,10 +4,34 @@
     justify-content: space-between;
     padding: 1rem 0;
     border-bottom: 1px solid #eee;
+    width: 100%;
+}
+
+.TodoItemEditInput {
+    display: none;
+    border: 1px solid #ccc;
+    padding: .2rem;
+    font-family: inherit;
+    width: 100%;
+    outline: none;
+}
+
+.TextAndControls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .TodoItem:last-child {
     border-bottom: none;
+}
+
+.TodoItemEdit .TextAndControls {
+    display: none;
+}
+
+.TodoItemEdit .TodoItemEditInput {
+    display: block;
 }
 
 .isCompleted .Text {
