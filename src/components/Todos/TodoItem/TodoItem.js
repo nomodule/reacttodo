@@ -41,7 +41,8 @@ const todoItem = (props) => {
                 className={classes.TodoItemEditInput} 
                 dfValue={props.text} 
                 autofocus={true} 
-                blured={props.removeEditState} /> : null}
+                blured={props.updateEditState} /> : null
+            }
         </div>
     )
 }

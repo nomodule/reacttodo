@@ -10,7 +10,7 @@ const todo = (props) => {
             key={todo.id} 
             isCompleted={todo.isDone} 
             editable={props.editing === todo.id ? true : false} 
-            removeEditState={props.removeEditState}
+            updateEditState={props.updateEditState.bind(null, todo.id)}
             removeTodoFn={props.removeTodoFn.bind(null, todo.id)} 
             editTodoFn={props.editTodoFn.bind(null, todo.id)}
             toggleComplete={props.toggleComplete.bind(null, todo.id)} />

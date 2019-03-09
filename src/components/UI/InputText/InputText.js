@@ -3,7 +3,6 @@ import React from 'react';
 // import classes from './InputText.module.css';
 
 const inputText = (props) => {
-    console.log(props.blured);
     return (
         <input 
             type="text" 

@@ -35,22 +35,31 @@ class TodoController extends Component {
             event.target.value = '';
         } else if (event.keyCode === 13 && event.target.value === '') {
             alert("Please enter something first...");
-        } else {
-
         }
-
+        
+        // if (event.keyCode === 13 && event.target.value === '') {
+            
+        // }
     }
 
     editTodoHandler = (id) => {
         this.setState({editing: id});
     }
 
-    removeEditStateHandler = () => {
-        this.setState({editing: null});
+    updateTodoHandler = (id, event) => {
+        let todosCopy = [
+            ...this.state.todos
+        ];
+
+        let updatedTodos = todosCopy.map(todo => {
+            if (todo.id === id) todo.text = event.target.value;
+            return todo;
+        });
+
+        this.setState({editing: null, todos: updatedTodos});
     }
 
     removeTodoHandler = (id) => {
-        console.log("inside removew todo handler")
         var filteredTodos = this.state.todos.filter(todo => {
             return todo.id !== id;
         });
@@ -117,7 +126,7 @@ class TodoController extends Component {
                     todos={showTheseTodos} 
                     removeTodoFn={this.removeTodoHandler} 
                     editTodoFn={this.editTodoHandler} 
-                    removeEditState={this.removeEditStateHandler} 
+                    updateEditState={this.updateTodoHandler} 
                     editing={this.state.editing} 
                     toggleComplete={this.toggleCompletehandler}/>
             </div>
