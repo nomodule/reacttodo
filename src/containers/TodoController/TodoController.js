@@ -20,7 +20,7 @@ class TodoController extends Component {
 
     inputKeyupHandler = (event) => {
         if (event.keyCode === 13 && event.target.value !== '') {
-            var randomID = Math.random().toString(36).substr(2, 5);
+            let randomID = Math.random().toString(36).substr(2, 5);
             let newTodo = {
                 text: event.target.value,
                 id: randomID,
@@ -36,10 +36,7 @@ class TodoController extends Component {
         } else if (event.keyCode === 13 && event.target.value === '') {
             alert("Please enter something first...");
         }
-        
-        // if (event.keyCode === 13 && event.target.value === '') {
-            
-        // }
+        // we can ommit `else`, it's tottaly okay
     }
 
     editTodoHandler = (id) => {
@@ -47,28 +44,43 @@ class TodoController extends Component {
     }
 
     updateTodoHandler = (id, event) => {
-        let todosCopy = [
-            ...this.state.todos
-        ];
-
-        let updatedTodos = todosCopy.map(todo => {
-            if (todo.id === id) todo.text = event.target.value;
-            return todo;
-        });
-
-        this.setState({editing: null, todos: updatedTodos});
+        // update todo if enter key was pressed or on blur event only
+        if ((event.type === "keyup" && event.keyCode === 13) || event.type === 'blur') {
+            let todosCopy = [
+                ...this.state.todos
+            ];
+    
+            let updatedTodos = todosCopy.map(todo => {
+                if (todo.id === id) todo.text = event.target.value;
+                return todo;
+            });
+    
+            this.setState({editing: null, todos: updatedTodos});
+        }
     }
 
     removeTodoHandler = (id) => {
-        var filteredTodos = this.state.todos.filter(todo => {
+        let filteredTodos = this.state.todos.filter(todo => {
             return todo.id !== id;
         });
 
         this.setState({todos: filteredTodos});
     }
 
+    clearTodoHandler = () => {
+        let todosCopy = [
+            ...this.state.todos
+        ];
+
+        let updatedTodos = todosCopy.filter(todo => {
+            return !todo.isDone
+        });
+
+        this.setState({todos: updatedTodos});
+    }
+
     toggleCompletehandler = (id) => {
-        var updatedTodos = [
+        let updatedTodos = [
             ...this.state.todos
         ];
         
@@ -106,6 +118,10 @@ class TodoController extends Component {
             }
         });
 
+        let pendingTodos = this.state.todos.filter(todo => {
+            return !todo.isDone;
+        });
+
         return (
             <div className={classes.TodoController}>
                 <InputText 
@@ -114,13 +130,13 @@ class TodoController extends Component {
                     placeholder="What needs to be done ?" 
                     keyup={this.inputKeyupHandler} />
                 <Button 
-                    className={`${classes.AllBtn} ${this.state.nowShowing === 'all' ? classes.Active : null}`} 
+                    className={`${classes.Btn} ${this.state.nowShowing === 'all' ? classes.Active : null}`} 
                     clicked={this.allBtnHandler}>All</Button>
                 <Button 
-                    className={`${classes.ActiveBtn} ${this.state.nowShowing === 'active' ? classes.Active : null}`}
+                    className={`${classes.Btn} ${this.state.nowShowing === 'active' ? classes.Active : null}`}
                     clicked={this.activeBtnHandler}>Active</Button>
                 <Button 
-                    className={`${classes.CompletedBtn} ${this.state.nowShowing === 'completed' ? classes.Active : null}`}
+                    className={`${classes.Btn} ${this.state.nowShowing === 'completed' ? classes.Active : null}`}
                     clicked={this.completedBtnHandler}>Completed</Button>
                 <Todos 
                     todos={showTheseTodos} 
@@ -129,6 +145,13 @@ class TodoController extends Component {
                     updateEditState={this.updateTodoHandler} 
                     editing={this.state.editing} 
                     toggleComplete={this.toggleCompletehandler}/>
+                <div className={classes.Footer}>
+                    <div className={classes.TextMuted}>{pendingTodos.length} todo(s) pending</div>
+                    <div 
+                        className={[classes.TextMuted, classes.isLikeLink].join(' ')} 
+                        style={{margin: 0}}
+                        onClick={this.clearTodoHandler}>Clear completed</div>
+                </div>
             </div>
         );
     }

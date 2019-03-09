@@ -41,6 +41,7 @@ const todoItem = (props) => {
                 className={classes.TodoItemEditInput} 
                 dfValue={props.text} 
                 autofocus={true} 
+                keyup={props.updateEditState} 
                 blured={props.updateEditState} /> : null
             }
         </div>
